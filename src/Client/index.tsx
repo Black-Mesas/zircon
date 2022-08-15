@@ -5,18 +5,16 @@ import { ContextActionService, Players, RunService, StarterGui, UserInputService
 import ZirconClientStore from "./BuiltInConsole/Store";
 import { ConsoleActionName } from "./BuiltInConsole/Store/_reducers/ConsoleReducer";
 import ZirconDockedConsole, { DockedConsoleProps } from "./BuiltInConsole/UI/DockedConsole";
-import { $ifEnv } from "rbxts-transform-env";
-import { $dbg, $print } from "rbxts-transform-debug";
+import { $dbg } from "rbxts-transform-debug";
 import Lazy from "../Shared/Lazy";
 import { GetCommandService } from "../Services";
 import Remotes, {
 	RemoteId,
-	ZirconErrorOutput,
 	ZirconiumParserErrorMessage,
 	ZirconiumRuntimeErrorMessage,
 	ZirconNetworkMessageType,
 } from "../Shared/Remotes";
-import { ZirconContext, ZirconLogData, ZirconLogLevel, ZirconMessageType } from "./Types";
+import { ZirconContext, ZirconLogLevel, ZirconMessageType } from "./Types";
 import ZirconTopBar from "./BuiltInConsole/UI/TopbarMenu";
 import { LogEvent } from "@rbxts/log";
 import ThemeContext, { BuiltInThemes } from "./UIKit/ThemeContext";
@@ -110,9 +108,28 @@ namespace ZirconClient {
 		EnableTags?: boolean;
 		AutoFocusTextBox?: boolean;
 		ConsoleComponent?: typeof Roact.Component | ((props: defined) => Roact.Element);
-		/** @internal */
+		Filter?: Array<ZirconLogLevel>;
 		Theme?: keyof BuiltInThemes;
 	}
+
+	export const FilterPresets = {
+		Default: [ZirconLogLevel.Info, ZirconLogLevel.Warning, ZirconLogLevel.Error, ZirconLogLevel.Wtf],
+		Full: [
+			ZirconLogLevel.Verbose,
+			ZirconLogLevel.Debug,
+			ZirconLogLevel.Info,
+			ZirconLogLevel.Warning,
+			ZirconLogLevel.Error,
+			ZirconLogLevel.Wtf,
+		],
+		Debug: [
+			ZirconLogLevel.Debug,
+			ZirconLogLevel.Info,
+			ZirconLogLevel.Warning,
+			ZirconLogLevel.Error,
+			ZirconLogLevel.Wtf,
+		],
+	};
 
 	let consoleBound = false;
 
@@ -164,6 +181,24 @@ namespace ZirconClient {
 				logDetailsPaneEnabled: permissions.has("CanViewLogMetadata"),
 				showTagsInOutput: EnableTags,
 			});
+
+			if (options.Filter !== undefined) {
+				ZirconClientStore.dispatch({
+					type: ConsoleActionName.SetFilter,
+					filter: { Levels: new Set(options.Filter) },
+				});
+			}
+		});
+	}
+
+	/**
+	 * Set the current filter levels that the player can see.
+	 * @param filter The filter levels visible to the player
+	 */
+	export function SetFilterLevel(filter: Array<ZirconLogLevel> = []): void {
+		ZirconClientStore.dispatch({
+			type: ConsoleActionName.SetFilter,
+			filter: { Levels: new Set(filter) },
 		});
 	}
 
@@ -172,8 +207,6 @@ namespace ZirconClient {
 	 * Default Keybind: F10
 	 *
 	 * @param options The console options
-	 *
-	 * *This is not required, you can use your own console solution!*
 	 */
 	export function Init(options: ConsoleOptions = {}) {
 		if (consoleBound) return;

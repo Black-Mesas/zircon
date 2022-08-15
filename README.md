@@ -1,12 +1,16 @@
 <div>
-    <img src="https://i.imgur.com/YgpbX7G.png" align="left" width="128"/>
-    <h1>ZIRCON</h1>
-    <h3>A clean, sleek, runtime debugging console for Roblox</h3>
-    <a href="https://npmjs.com/package/@rbxts/zircon"><img src="https://badge.fury.io/js/@rbxts%2Fzircon.svg"/></a>
+    <img src="https://raw.githubusercontent.com/Black-Mesas/zircon/master/assets/zircon.png" align="left" width="128"/>
+    <h1>Black Mesas™ Sponsored Zircon</h1>
+    <h3>A clean, sleek, runtime debugging console for Roblox.</h3>
+    <a href="https://npmjs.com/package/@rbxts/zircon"><img src="https://img.shields.io/badge/npm%20package-none-lightgrey"/></a>
     <br/>
 </div>
 
 <img src="https://raw.githubusercontent.com/roblox-aurora/zircon/master/assets/Example2.png"/>
+
+## Black Mesas Foreword
+
+This is not necessarily supposed to be used publically. Feel free to, and there have been some documentation bits added if so, but beware this is definitely not being updating past a few odd changes.
 
 ## Setup
 To begin, it is recommended to do
@@ -17,6 +21,12 @@ npm i @rbxts/zircon @rbxts/log
 This will install both Zircon, as well as the logging support. It is recommended to use the logging as it can be filtered easily through the Zircon console.
 
 ## Features
+- ### **!! NEW !!** Black Mesas™ Sponsored Additions:
+    - Timestamps readded to structured logs (10% B-12).
+    - You can choose the default filter options (5% B-12).
+    - Does not create an annoying dependency self-destruction (12% B-12).
+    - Includes various bad design decisions that the original, in fact, does not have (3% B-12).
+
 - ### Zirconium Language Scripting
     Zircon comes inbuilt with a runtime scripting language called [Zirconium](https://github.com/roblox-aurora/zirconium). This allows you to run scripts against your game during runtime.
 
@@ -68,7 +78,7 @@ import Log from "@rbxts/log";
 
 const PrintMessage = new ZirconFunctionBuilder("print_message")
     .AddArguments("string")
-    .Bind((context, message) => Log.Info(
+    .Bind((context, message) => context.LogInfo(
             "Zircon says {Message} from {Player}", 
             message,
             context.GetExecutor()

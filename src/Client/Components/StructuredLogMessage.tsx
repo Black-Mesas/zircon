@@ -8,6 +8,7 @@ import Flipper, { Instant } from "@rbxts/flipper";
 import Padding from "./Padding";
 import { formatRichText } from "Client/Format";
 import { connect } from "@rbxts/roact-rodux";
+import { LocalizationService } from '@rbxts/services'
 import { ConsoleReducer } from "Client/BuiltInConsole/Store/_reducers/ConsoleReducer";
 
 function sanitise(input: string) {
@@ -92,6 +93,19 @@ class StructuredLogMessageComponent extends Roact.Component<StructuredLogMessage
 						.split("\n")
 						.map((f, i) => (i > 0 ? `${" ".rep(6)}${f}` : f))
 						.join("\n");
+
+					messages.push(
+						getRichTextColor3(
+							theme,
+							"Grey",
+							`[${
+								DateTime.fromIsoDate(Timestamp)?.FormatLocalTime(
+									"LT",
+									LocalizationService.SystemLocaleId,
+								) ?? "??:?? ??"
+							}]`,
+						),
+					);
 
 					if (Level === LogLevel.Information) {
 						messages.push(getRichTextColor3(theme, "Cyan", "INFO "));
