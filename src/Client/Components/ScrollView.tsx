@@ -10,7 +10,6 @@ interface ScrollViewEvents {
 	CanvasPositionChanged?: (position: Vector2, view: ScrollView<never>) => void;
 }
 
-export type InferEnumNames<T> = T extends { EnumType: Enum.EnumType<infer A> } ? A["Name"] : never;
 interface ScrollViewProps extends ScrollViewEvents {
 	Size?: UDim2;
 	Position?: UDim2;
@@ -45,7 +44,7 @@ interface GridContent {
 
 interface ListContent {
 	ItemPadding?: number | UDim;
-	ItemAlignment?: Enum.VerticalAlignment | InferEnumNames<Enum.VerticalAlignment>;
+	ItemAlignment?: Enum.VerticalAlignment | "Center" | "Top" | "Bottom"; // tried fiddling with InferEnumNames, just couldn't figure it out :(
 }
 
 interface ScrollViewState {
@@ -240,7 +239,7 @@ export default class ScrollView<T extends ScrollViewProps> extends Roact.Compone
 		}
 
 		if (this.props.GridLayout === true) {
-			const { ItemSize, ItemPadding = 0 } = (this.props as unknown) as GridContent;
+			const { ItemSize, ItemPadding = 0 } = this.props as unknown as GridContent;
 			return (
 				<uigridlayout
 					Key="ScrollViewGrid"
