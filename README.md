@@ -13,12 +13,7 @@
 This is not necessarily supposed to be used publically. Feel free to, and there have been some documentation bits added if so, but beware this is definitely not being updating past a few odd changes.
 
 ## Setup
-To begin, it is recommended to do
-```
-npm i @rbxts/zircon @rbxts/log
-```
-
-This will install both Zircon, as well as the logging support. It is recommended to use the logging as it can be filtered easily through the Zircon console.
+To install Black Mesas™ Sponsored Zircon, you will manually have to add a git URL dependency to your `package.json`. 
 
 ## Features
 - ### **!! NEW !!** Black Mesas™ Sponsored Additions:
