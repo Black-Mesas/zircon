@@ -114,6 +114,7 @@ namespace ZirconClient {
 
 	export const FilterPresets = {
 		Default: [ZirconLogLevel.Info, ZirconLogLevel.Warning, ZirconLogLevel.Error, ZirconLogLevel.Wtf],
+		Warn: [ZirconLogLevel.Warning, ZirconLogLevel.Error, ZirconLogLevel.Wtf],
 		Full: [
 			ZirconLogLevel.Verbose,
 			ZirconLogLevel.Debug,
