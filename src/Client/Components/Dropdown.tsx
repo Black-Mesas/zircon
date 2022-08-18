@@ -194,25 +194,30 @@ export default class Dropdown<T = string> extends Roact.Component<DropdownProps<
 							<Padding Padding={{ Horizontal: 10 }} />
 							{item.Icon && <ZirconIcon Icon={item.Icon} Position={new UDim2(0, 0, 0.5, -8)} />}
 							<textbutton
-								Size={new UDim2(1, 0, 1, 0)}
-								Position={item.Icon ? new UDim2(0, 20, 0, 0) : new UDim2()}
+								Size={new UDim2(1, 35, 1, 0)}
 								BackgroundTransparency={1}
-								Font={theme.Font}
-								TextSize={15}
-								TextXAlignment="Left"
-								TextColor3={
-									Disabled
-										? theme.PrimaryDisabledColor3
-										: item.TextColor3
-										? item.TextColor3
-										: theme.PrimaryTextColor3
-								}
-								// TextStrokeTransparency={0.5}
-								Text={item.SelectedText ?? item.Text}
+								Text=""
 								Event={{
 									MouseButton1Click: () => !Disabled && this.setState({ active: !this.state.active }),
 								}}
-							/>
+							>
+								<textlabel
+									Size={new UDim2(1, -35, 1, 0)}
+									Font={theme.Font}
+									TextSize={15}
+									TextXAlignment="Left"
+									TextColor3={
+										Disabled
+											? theme.PrimaryDisabledColor3
+											: item.TextColor3
+											? item.TextColor3
+											: theme.PrimaryTextColor3
+									}
+									// TextStrokeTransparency={0.5}
+									Position={item.Icon ? new UDim2(0, 20, 0, 0) : new UDim2()}
+									Text={item.SelectedText ?? item.Text}
+								/>
+							</textbutton>
 						</frame>
 						<imagelabel
 							Image="rbxassetid://2657038128"
