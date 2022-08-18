@@ -205,6 +205,7 @@ export default class Dropdown<T = string> extends Roact.Component<DropdownProps<
 									Size={new UDim2(1, -35, 1, 0)}
 									Font={theme.Font}
 									TextSize={15}
+									BackgroundTransparency={1}
 									TextXAlignment="Left"
 									TextColor3={
 										Disabled

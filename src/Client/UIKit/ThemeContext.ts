@@ -45,7 +45,7 @@ export interface ZirconThemeDefinition {
 }
 
 export const ZirconDarkPlastic = identity<ZirconThemeDefinition>({
-	IconAssetUri: "rbxassetid://6413958171",
+	IconAssetUri: "rbxassetid://10639794560",
 	Font: "Ubuntu",
 	ConsoleFont: "RobotoMono",
 	PrimaryBackgroundColor3: Color3.fromRGB(33, 37, 43),
@@ -71,7 +71,7 @@ export const ZirconDarkPlastic = identity<ZirconThemeDefinition>({
 });
 
 export const ZirconFrost = identity<ZirconThemeDefinition>({
-	IconAssetUri: "rbxassetid://6413958171",
+	IconAssetUri: "rbxassetid://10639794560",
 	Font: "Ubuntu",
 	ConsoleFont: "RobotoMono",
 	PrimaryBackgroundColor3: Color3.fromRGB(212, 218, 212),

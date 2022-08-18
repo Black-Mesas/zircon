@@ -29,6 +29,7 @@ const IconsV2 = {
 	MaximizeUp: identity<IconDefinition>({ Offset: new Vector2(16 * 6, 0) }),
 	Minimize: identity<IconDefinition>({ Offset: new Vector2(16 * 7, 0) }),
 	Zirconium: identity<IconDefinition>({ Offset: new Vector2(16 * 8, 0) }),
+	BlackMesas: identity<IconDefinition>({ Offset: new Vector2(16 * 8, 16 * 1) }),
 	ActionExecute: identity<IconDefinition>({ Offset: new Vector2(0, 16 * 2) }),
 	ContextClient: identity<IconDefinition>({ Offset: new Vector2(0, 16 * 3) }),
 	ContextServer: identity<IconDefinition>({ Offset: new Vector2(16, 16 * 3) }),
@@ -104,6 +105,7 @@ export default class ZirconIcon extends Roact.PureComponent<IconProps> {
 									BackgroundTransparency={1}
 									Image={theme.IconAssetUri}
 									ImageColor3={theme.IconColor3}
+									ResampleMode={Enum.ResamplerMode.Pixelated}
 									ImageRectOffset={icon.Offset}
 									ZIndex={this.props.ZIndex}
 									ImageRectSize={new Vector2(16, 16)}
@@ -125,6 +127,7 @@ export default class ZirconIcon extends Roact.PureComponent<IconProps> {
 								ImageColor3={theme.IconColor3}
 								ImageRectOffset={icon.Offset}
 								Position={this.props.Position}
+								ResampleMode={Enum.ResamplerMode.Pixelated}
 								ZIndex={this.props.ZIndex}
 								ImageRectSize={new Vector2(16, 16)}
 							/>
