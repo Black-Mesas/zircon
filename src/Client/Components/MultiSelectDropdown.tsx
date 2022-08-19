@@ -241,18 +241,23 @@ export default class MultiSelectDropdown<T = string> extends Roact.Component<Dro
 						<frame Key="Content" Size={new UDim2(1, -25, 1, 0)} BackgroundTransparency={1}>
 							<Padding Padding={{ Horizontal: 10 }} />
 							<textbutton
-								Size={new UDim2(1, 0, 1, 0)}
+								Size={new UDim2(1, 35, 1, 0)}
 								BackgroundTransparency={1}
-								Font={theme.Font}
-								TextSize={15}
-								TextXAlignment="Left"
-								TextColor3={Disabled ? theme.PrimaryDisabledColor3 : theme.PrimaryTextColor3}
-								// TextStrokeTransparency={0.5}
-								Text={this.props.Label.format(values.size())}
 								Event={{
 									MouseButton1Click: () => !Disabled && this.setState({ active: !this.state.active }),
 								}}
-							/>
+							>
+								<textlabel
+									Size={new UDim2(1, -35, 1, 0)}
+									BackgroundTransparency={1}
+									Font={theme.Font}
+									TextSize={15}
+									TextXAlignment="Left"
+									TextColor3={Disabled ? theme.PrimaryDisabledColor3 : theme.PrimaryTextColor3}
+									// TextStrokeTransparency={0.5}
+									Text={this.props.Label.format(values.size())}
+								/>
+							</textbutton>
 						</frame>
 						<imagelabel
 							Image="rbxassetid://2657038128"
